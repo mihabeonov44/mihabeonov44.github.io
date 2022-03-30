@@ -1,0 +1,1472 @@
+
+
+
+:root {
+    --main-color: #1eacc7;
+
+    /* Использую эту переменную --second-color в основном файле style.css  */
+    --second-color: #ff5656;
+}
+
+
+
+/* Подключение _variables.css срабатывает, но переменные из _variables.css не видно в style.css  */
+/* @import url("_variables.css"); */
+
+/* Подключаем "_menulink.css" в начале файла, тогда подключение сработает */
+/* @import url("_menulink.css"); */
+
+
+
+
+/* Проект Uber_project */
+/* Курс ВЕБ-разработчик 2021. К уроку 2.4. */
+
+
+/* Применим шрифт Roboto для универсального селектора (*) для всех элементов.  */
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+/* Обратите внимание на изменения для "липкой" шапки меню: пометил их ниже как "липкий" */
+header {
+    /* Даём родителю header position: relative; т.к. дочернему диву с классом .subheader дали абсолютное позиционирование.  */
+    position: relative;
+    height: 50px;      /* "липкий" */
+
+}
+
+nav {
+    height: 50px;
+    background-color: #212121;
+
+    /* Делаю фиксированное позиционирование секции Меню  */
+    position: fixed;   /* "липкий" */
+    /* Чтобюы содержимое растянулось во всю ширину */
+    width: 100%;       /* "липкий" */
+    /* По оси Z делаю ближе к глазу пользователя, т.е. чтобы при прокрутке страницы остальные секции не накладывались на секцию Меню  */
+    z-index: 5;        /* "липкий" */
+
+}
+
+/* Гамбургер (3 полоски меню) скрываю при любом разрешении экрана  */
+.hamburger {
+	display: none;
+}
+
+.menu {
+    padding: 13px 70px;
+    margin: 0;
+
+    /* Убираем маркировку перед каждым элементом li списка ul с классом menu  */
+    list-style-type: none;
+
+    /* Выровнем элементы li с класоом menu_item по горизонтали и вертикали */
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+/* Если "_menulink.css" подключать в середине файла, то не работает подключение  */
+/* @import url("_menulink.css"); */
+
+/* Стилизуем сами ссылки <a></a> внутри внутри li  */
+.menu .menu_link {
+    font-size: 15px;
+    font-weight: 300;
+    color: #fff;
+}
+
+/* Выбранный пункт меню выделяется цвето --second-color  */
+.menu_link:hover {
+    text-decoration: none;
+    color: var(--main-color); 
+}
+
+/* Делаем вертикальный разделитель между пунктами меню */
+.menu .menu_item {
+    /* Правая граница толщиной 2px, стиль границы dotted - точечный, цвет черный */
+    border-right: 2px dotted yellow;
+    /* Сдвинем разделитель вправо, чтобы он был между пунктами меню */
+    padding-right: 28px;
+    /* Но, в последнем пункте меню будет лишний разделитель справа. Как его убрать рассмотрим позже */
+
+}
+
+/* Убираем разделитель после последнего пункта меню  */
+.menu .menu_item:last-child {
+    border-right: none;
+}
+
+
+.subheader {
+    height: 84px;
+
+    /* Взяли из Zeplin. В таком случае прозрачность установится для всего блока и для всех элементов этого блока. А этого мы не хотим делать.  */
+    /* opacity: 0.6; */
+    /* background-color: #000; */
+
+    /* Поэтому мы сделаем по другому: Этой записью через альфа-канал установим прозрачность 0.6 только для background-color */
+    background-color: rgba(0,0,0, 0.6);
+
+    /* Секцию с классом "promo" надо задвинуть немного выше, чтобы она залезла под шапку с классом "subheader". Поэтому абсолютно спозиционируем "subheader" и он как бы будет наезжать на секцию "promo".  */
+    position: absolute;
+    /* Укажем что ширина этого блока будет 100% от родителя. Т.е. содержимое растянется во всю ширину */
+    width: 100%;
+
+    /* Двигаем вниз на 50px  */
+    top: 50px;                   /*  "липкий" */
+
+}
+
+.subheader .subheader_logo {
+    /* Если вдруг логотип в будущем будет больше чем сейчас, то он не будет вылезать за эту колонку <div class="col-md-4 offset-md-1"> внутри которой он находится. Поэтому ставим свойство max-width: 100%;, т.е. максимальная ширина которую может занимать элемент. */
+    max-width: 100%;
+
+    /* Т.к. ссылка <a> это строчный элемент, то чтобы применить к ней margin-top: 16px; её надо сделать блочным элементом с помощью display: block;  */
+    display: block;
+    margin-top: 16px;
+
+}
+
+.subheader .subheader_oficial {
+    margin-top: 6px;
+    opacity: 0.5;
+    /* font-family: Roboto; */
+    font-size: 13px;
+    font-weight: 400;
+    /* font-stretch: normal; */
+    /* font-style: normal; */
+    /* line-height: 5.23; */
+    /* letter-spacing: normal; */
+    /* text-align: left; */
+    color: rgb(255, 255, 255);
+
+}
+
+.subheader .subheader_call {
+    margin-top: 20px;
+    font-size: 12px;
+    font-weight: 300;
+    /* font-stretch: normal; */
+    /* font-style: normal; */
+    /* line-height: 1.17; */
+    /* letter-spacing: normal; */
+    text-align: right;
+    color: #fff;
+
+}
+
+.subheader .subheader_phone {
+    /* Т.к. ссылка <a> это строчный элемент, то чтобы применить к ней margin-top: 16px; её надо сделать блочным элементом с помощью display: block;  */
+    display: block;
+    margin-top: 8px;
+
+    font-size: 22px;
+    font-weight: normal;
+    /* font-stretch: normal; */
+    /* font-style: normal; */
+    /* line-height: 3.09; */
+    /* letter-spacing: normal; */
+    text-align: right;
+    /* text-align: center; */
+    color: #fff;
+    text-transform: uppercase;
+
+    /* Запишем межстрочный интервал в 12px, чтобы наш элемент правильно расположился по высоте.  */
+    line-height: 12px;
+
+}
+
+.subheader .subheader_btn {
+    /* Взяли из Zeplin стили для кнопки */
+    width: 172px;
+    height: 46px;
+    margin-top: 19px;
+    /* margin: 19px 0 19px 0; */  /* Сам поставил значения из Zeplin */
+
+    /* padding: 18px 20px; */
+    box-shadow: inset 0px -3px 0 0 rgba(0, 0, 0, 0.12);
+
+    /* Уберем border, чтобы кнопка выглядела как в макете и поставим border: none; */
+    /* border: solid 3px rgba(0, 0, 0, 0.07); */
+    border: none;
+    border-radius: 4px;    /* Сам написал */
+
+    background-image: linear-gradient(to top, #1eacc7, #4ce2ff);
+
+    /* Взяли из Zeplin стили для текста в кнопке */
+    /* width: 132px; */
+    /* height: 10px; */
+    text-shadow: 0.7px 0.7px 0 rgba(0, 0, 0, 0.21);
+    /* font-family: Roboto; */
+    font-size: 14px;
+    font-weight: normal;
+    /* font-stretch: normal; */
+    /* font-style: normal; */
+    /* line-height: 4.86; */
+    /* letter-spacing: normal; */
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+
+}
+
+.subheader .subheader_btn:hover {
+    /* Сначала убираем фоновый градиент background-image: linear-gradient(to top, #1eacc7, #4ce2ff); поставив значение none  */
+    background-image: none;
+    /* Потом ставим цвет фона */
+    background-color: #1eacc7;
+}
+
+
+
+.promo {
+    /* Можно поставить ширину в auto, но можно и не ставить */
+    /* width: auto; */
+
+    /* Установим минимальную высоту для секции для того чтобы она правильно отображалась, и дальше если вдруг контент увеличивается внутри секции, то и эта секция будет растягиваться вслед за этим контентом.  */
+    min-height: 800px;
+
+    background-image: url(../img/bg/promo_bg.jpg);
+
+    /* Ставим картинку по оси X и по оси Y по центру  */
+    background-position: center center;
+
+    /* Раястягиваем картинку до размеров 1920*800 px , если вдруг она размерами меньше 1920*800 px */
+    background-size: cover;
+
+    /* Картинка не повторяется */
+    background-repeat: no-repeat;
+
+    /* В Zeplin Измерим внутренние отступы для всей секции и запишем */
+    padding: 150px 0 135px 0;
+}
+
+.promo .promo_header {
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 60px;
+    /* Сами пропишем */
+    line-height: 60px;
+    /* Сами пропишем */
+    margin: 0;
+    text-align: center;
+}
+
+.promo .promo_subheader  {
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 36px;
+    /* Сами пропишем */
+    line-height: 36px;
+    /* Сами пропишем */
+    margin: 0;
+    /* Сами измерим в Фотошопе и пропишем */
+    margin-top: 22px;
+    text-align: center;
+}
+
+.promo .promo_descr {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 400;
+    /* Межстрочный интервал 24px здесь нужен т.к. это большой текст  */
+    line-height: 24px;
+    text-align: center;
+    margin-top: 23px;
+}
+
+.promo .promo_btn {
+    /* Кнопка это inline-block элемент, но нам надо её поставить по центру, поэтому сделаем её блочным элементом чтобы установить кнопку при помощи margin.  */
+    display: block;
+    margin: 118px auto 0 auto;
+
+    width: 259px;
+    height: 63px;
+    box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.12);
+    border: none;
+    border-radius: 4px;
+    background-image: linear-gradient(to top, #1eacc7 0%, #4ce2ff 100%);
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.21);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.promo .promo_btn:hover {
+    /* Сначала убираем фоновый градиент background-image: linear-gradient(to top, #1eacc7, #4ce2ff); поставив значение none  */
+    background-image: none;
+    /* Потом ставим цвет фона */
+    background-color: #1eacc7;
+}
+
+
+
+/* Секция "ПРЕИМУЩЕСТВА. 8 причин начать работать" */
+.advantage {
+    /* Установим минимальную высоту для секции для того чтобы она правильно отображалась, и дальше если вдруг контент увеличивается внутри секции, то и эта секция будет растягиваться вслед за этим контентом.  */
+    min-height: 900px;
+
+    background-color: #fff;
+    padding: 71px 0 65px 0;
+}
+
+.label {
+    font-size: 11px;
+    font-weight: 300;
+    text-align: center;
+    color: #fff;
+
+    width: 112px;
+    height: 24px;
+    padding: 5px 11px 5px 12px;
+    background-color: #000;
+    /* Выравним блок с классом label по центру */
+    margin: 0 auto;
+
+    text-transform: uppercase;
+    text-align: center;
+
+    position: relative;
+    z-index: 2;
+}
+
+.title {
+    font-size: 38px;
+    font-weight: bold;
+    /* line-height: 1.26; */
+    text-align: center;
+    color: #222;
+    margin-top: 38px;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+}
+
+.subtitle {
+    font-size: 17px;
+    font-weight: 400;
+    text-align: center;
+    color: #222;
+    margin-top: 19px;
+    position: relative;
+    z-index: 2;
+}
+
+.advantage .advantage_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+}
+
+.advantage .advantage_block .advantage_round {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* align-items: baseline; */
+    margin-right: 26px;
+
+    /* Из исходного кода к уроку (Webdev2019-master/Uber_step_1)  */
+    /* width: 113px;
+    height: 113px;
+    background-color: #1eacc7;
+    border-radius: 100%; */
+
+}
+
+.advantage .advantage_block .advantage_descr {
+    width: 343px;
+}
+
+.advantage .advantage_block .advantage_descr .advantage_subtitle {
+    font-size: 17px;
+    font-weight: normal;
+    line-height: 21px;
+    color: #1eacc7;
+}
+
+.advantage .advantage_block .advantage_descr .advantage_text {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 21px;
+    color: #202020;
+}
+
+
+/* Секция “Мобильное приложение Убер”. */
+.mobile {
+    /* Установим минимальную высоту для секции для того чтобы она правильно отображалась, и дальше если вдруг контент увеличивается внутри секции, то и эта секция будет растягиваться вслед за этим контентом.  */
+    min-height: 864px;
+    padding: 48px 0 80px 0;
+
+    /* background-color: #1eacc7; */
+    background: url('../img/bg/mobile_app.png');
+
+    /* Ставим картинку по оси X и по оси Y по центру  */
+    background-position: center center;
+
+    /* Раястягиваем картинку до размеров 1920*800 px , если вдруг она размерами меньше 1920*800 px */
+    background-size: cover;
+
+    /* Картинка не повторяется */
+    background-repeat: no-repeat;
+    
+}
+
+.mobile .subtitle {
+    /* Делаем отступ снизу в 32px  */
+    margin-bottom: 32px;
+}
+
+/* Делаем отступ сверху в 32px  */
+/* .row {
+    margin-top: 32px;
+} */
+
+.mobile_item {
+
+    width: 320px;
+    height: 280px;
+    /* Выравним div блок с классом mobile_item по центру */
+    margin: 0 auto;
+
+    margin-bottom: 19px;
+
+    /* margin: 32px 67px 19px 0; */
+    /* padding: 0 26px 0 27px; */
+    /* opacity: 0.9; */
+    /* mix-blend-mode: multiply; */
+
+    /* В уроке свойство padding-top: 91px; ставится зедсь, Но я поставил в стилях к .mobile_item_subtitle  */
+    /* padding-top: 91px; */
+
+    /* Для дочернего эл-та .mobile_item_plus */
+    position: relative;
+
+}
+
+.mobile_item_1 {
+    /* Ставим картинку на фон */
+    /* background-image: url('../img/bg/mobile_screen_1.jpg'); */
+
+    /* Ставим картинку по оси X и по оси Y по центру  */
+    /* background-position: center center; */
+
+    /* Раястягиваем картинку до размеров 1920*800 px , если вдруг она размерами меньше 1920*800 px */
+    /* background-size: cover; */
+
+    /* Картинка не повторяется */
+    /* background-repeat: no-repeat; */
+
+    /* Или все эти верхние 4 свойства пишем одной строкой:  */
+    background: url('../img/bg/mobile_screen_1.jpg') center center/cover no-repeat;
+
+}
+
+.mobile_item_2 {
+    background: url('../img/bg/mobile_screen_2.jpg') center center/cover no-repeat;
+}
+.mobile_item_3 {
+    background: url('../img/bg/mobile_screen_3.jpg') center center/cover no-repeat;
+}
+.mobile_item_4 {
+    background: url('../img/bg/mobile_screen_4.jpg') center center/cover no-repeat;
+}
+.mobile_item_5 {
+    background: url('../img/bg/mobile_screen_5.jpg') center center/cover no-repeat;
+}
+.mobile_item_6 {
+    background: url('../img/bg/mobile_screen_6.jpg') center center/cover no-repeat;
+}
+
+.mobile_item_subtitle {
+    /* margin: 92px 3px 167px 0; */
+    font-size: 24px;
+    font-weight: normal;
+    /* line-height: 1.29; */
+    line-height: 31px;
+
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+
+}
+
+.mobile_item_plus {
+    width: 26px;
+    height: 26px;
+    background-color: #000;
+
+    /* Ставим блок по центру */
+    margin: 0 auto;
+
+    /* Делаем блок круглым */
+    border-radius: 100%;
+
+    /* Выровним "+" (плюсик)  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    /* Ставим position: absolute;  */
+    position: absolute;
+    /* Отодвигаем "+" от нижней границы вверх на 35px  */
+    bottom: 35px;
+    /* Отодвигаем "+" от левой границы вправо на 50 % ширины блока .mobile_item */
+    left: 50%;
+    /* Смещаем "+" по оси X влево на 50 % ширины текущего блока .mobile_item_plus , т.е. если ширина 26 px то смещается на 13px */
+    transform: translateX(-50%);
+
+}
+
+/* Эту запись убрали, и вместо неё выровняли "+" по центру за счет display: flex; , justify-content: center; и align-items: center;  */
+/* Картинка (сам "+"), которая будет внутри блока всегда должна занимать 100 % от ширины */
+/* .mobile_item_plus img {
+    width: 100%;
+} */
+
+.mobile_item_plus:hover {
+    background-color: var(--second-color);
+}
+
+
+/* Секция “Выбор - отличная штука” */
+.choice {
+    /* Установим минимальную высоту для секции для того чтобы она правильно отображалась, и дальше если вдруг контент увеличивается внутри секции, то и эта секция будет растягиваться вслед за этим контентом.  */
+    min-height: 896px;
+    padding: 57px 0 138px 0;
+
+    /* background-color: #1eacc7; */
+    background: url('../img/bg/mobile_app.png');
+
+    /* Ставим картинку по оси X и по оси Y по центру  */
+    background-position: center center;
+
+    /* Раястягиваем картинку до размеров 1920*800 px , если вдруг она размерами меньше 1920*800 px */
+    background-size: cover;
+
+    /* Картинка не повторяется */
+    background-repeat: no-repeat;
+
+    position: relative;
+}
+
+.choice .black {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 499px;
+    width: 100%;
+    background-color: #070716;
+    z-index: 1;
+}
+
+.choice .choice_img {
+    position: relative;
+    display: block;
+    /* Ставим блок по центру */
+    margin: 56px auto 0 auto;
+    z-index: 2;
+}
+
+.label_white {
+    background-color: #fff;
+	color: #000;
+}
+
+.title_white {
+    color: #fff;
+}
+
+.subtitle_white {
+    color: #fff;
+}
+
+.choice .choice_descr {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.41;
+    text-align: center;
+    color: #222;
+}
+
+
+/* Секция “Условия и требования” */
+.require {
+    /* Установим минимальную высоту для секции для того чтобы она правильно отображалась, и дальше если вдруг контент увеличивается внутри секции, то и эта секция будет растягиваться вслед за этим контентом.  */
+    /* min-height: 919px; */
+    /* Для этой секции минимальную высоту не указываем, потому что в будущем списки в секции могут расширяться, видоизменяться и прочее. Весь контент котрый будет находиться внутри секции будет генерировать высоту секции. */
+
+    padding: 68px 0 84px 0;
+    background-color: #fff;
+
+}
+
+.require_block {
+    margin: 33px 0;
+}
+
+/* Этим классом убираем нижний отступ у нижних блоков с классом "require_block" */
+.require_block_nmb {
+    margin-bottom: 0;
+}
+
+.require_title {
+    font-size: 22px;
+    font-weight: normal;
+    color: #1ca8c3;
+
+}
+
+.require_subdescr {
+    font-size: 17px;
+    font-weight: 300;
+    color: #1ca8c3;
+    margin-top: 23px;
+}
+
+.require_title_red {
+    font-size: 22px;
+    font-weight: normal;
+    /* color: #ff5656; */
+    color: var(--second-color);
+
+}
+
+
+
+.require_list {
+    /* 1-й мой вариант */
+    /* margin-left: -27px; */
+
+    /* 2-й вариант */
+    /* Убираем кружочки у пунктов li  */
+    list-style-type: none;
+    /* Сдвигаем строки li влево на 50px */
+    padding-left: 50px;
+    margin-top: 22px;
+    
+    
+    
+}
+
+/* Для тега "li"  */
+.pos_item {
+/* li { */
+
+    /* 1-й мой вариант */
+    /* list-style: none; Убираем исходные маркеры */
+    /* background: url("../icons/icon_v_blue.png") no-repeat 0 10%; Параметры фона */
+    /* padding-left: 30px; Смещаем текст вправо  */
+    /* font-size: 17px; */
+    /* font-weight: 300; */
+    /* text-align: left; */
+    /* color: #222; */
+    /* margin-top: 15px; */
+
+    /* 2-й вариант */
+    position: relative;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 24px;
+    margin-bottom: 10px;
+}
+
+.pos_item:before {
+/* li:before { */
+
+    /* 2-й вариант */
+    /* content: ''; */
+    content: url("../icons/icon_v_blue.png");
+    display: block;
+    position: absolute;
+    left: -32px;
+    top: 3px;
+    width: 21px;
+    height: 20px;
+    /* background: url("../icons/icon_v_blue.png") center (center / cover) no-repeat; */
+}
+
+
+.pos_item_red {
+    /* 1-й мой вариант */
+    /* list-style: none; Убираем исходные маркеры */
+    /* background: url("../icons/icon_v_red.png") no-repeat 0 10%; Параметры фона */
+    /* padding-left: 30px; Смещаем текст вправо  */
+    /* font-size: 17px; */
+    /* font-weight: 300; */
+    /* text-align: left; */
+    /* color: #222; */
+    /* margin-top: 15px; */
+
+    /* 2-й вариант */
+    position: relative;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 24px;
+    margin-bottom: 10px;
+}
+
+.pos_item_red:before {
+        /* 2-й вариант */
+        /* content: ''; */
+        content: url("../icons/icon_v_red.png");
+        display: block;
+        position: absolute;
+        left: -32px;
+        top: 3px;
+        width: 21px;
+        height: 20px;
+        /* background: url("../icons/icon_v_blue.png") center (center / cover) no-repeat; */
+}
+
+
+/* Секция "По всему миру" */
+.world {
+    /* Установим минимальную высоту для секции для того чтобы она правильно отображалась, и дальше если вдруг контент увеличивается внутри секции, то и эта секция будет растягиваться вслед за этим контентом.  */
+    min-height: 717px;
+    padding: 49px 0 49px 0;
+
+    background-image: url(../img/bg/map.jpg);
+    /* Ставим картинку по оси X и по оси Y по центру  */
+    background-position: center center;
+    /* Раястягиваем картинку до размеров 1920*800 px , если вдруг она размерами меньше 1920*800 px */
+    background-size: cover;
+    /* Картинка не повторяется */
+    background-repeat: no-repeat;
+
+    position: relative;
+}
+
+.world_link {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 49px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #1fbad6;
+
+}
+
+.world_link:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+
+/* Секция Footer */
+footer {
+    min-height: 156px;
+    background-color: #fff;
+    padding: 14px 23px 39px 23px;
+
+}
+
+footer a:hover {
+    text-decoration: none;
+}
+
+.footer_divider {
+    width: 299px;
+    height: 4px;
+    /* margin: 815px 15px 30px 272px; */
+    background-color: #1fbad6;
+    /* Ставлю по центру */
+    margin: 0 auto;
+}
+
+.footer_wrapper {
+    display: flex;
+    justify-content: space-between;
+    /* Выровним блоки внутри .footer_wrapper вдоль поперечной оси от начала (от верха)  */
+    align-items: flex-start;
+    margin-top: 32px;
+}
+
+.footer_social {
+    width: 160px;
+    /* width: 260px; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer_social_item {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    margin: 0 4px;
+    width: 32px;
+    height: 32px;
+    background-color: #070716;
+    border-radius: 100%;
+}
+
+.footer_social_item i {
+    color: #fff;
+}
+
+
+.footer_links {
+    width: 390px;
+    margin: 0 auto;
+}
+
+.footer_links_main {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.footer_links_main a {
+    font-size: 15px;
+    font-weight: 300;
+    color: #070716;
+    text-transform: uppercase;
+}
+
+.footer_links_sub {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.footer_links_sub a {
+    font-size: 11px;
+    font-weight: 300;
+    color: #999;
+    text-transform: uppercase;
+}
+
+.footer_links_lang {
+    display: block;
+    margin: 0 auto;
+    margin-top: 19px;
+    text-align: center;
+
+    /* font-size: 11px;
+    font-weight: normal;
+    color: #1fbad6;
+    text-align: center;
+    text-transform: uppercase; */
+}
+
+.footer_links_lang a {
+    font-size: 11px;
+    font-weight: normal;
+    color: #1fbad6;
+    text-transform: uppercase;
+}
+
+/* Каждый из 3-х пустых дивов <div> внутри блока "footer_wrapper" будет занимать ширину равную 33 %, т.е. будет занимать 1/3 шиирны экрана. */
+.footer_wrapper>div {
+    width: 33%;
+}
+
+/* 3-й пустой div внутри блока "footer_wrapper" сделаем флексом, и выровним его по правому краю */
+.footer_wrapper>div:nth-child(3) {
+    display: flex;
+    justify-content: flex-end;
+}
+
+header .subheader .xs-visible {
+    display: none;
+}
+
+
+
+
+/* ************************************************************** */
+
+/* Вставляю АДАПТАЦИЮ под разные расширения экрана.  */
+/* Скопировал стили из файла _media.css , т.к. если загружать с сайта https://mihabeonov44.github.io/uber-my/ , то стили не применяются.  */
+
+
+
+@media (max-width:1200px) {
+
+    nav .menu .menu_link {
+        font-size: 13px;
+    }
+    nav .menu .menu_item {
+        padding-right: 20px;
+    }
+
+    section.promo .promo_header {
+        font-size: 50px;
+    }
+
+    /* section.promo .promo_subheader {
+        font-size: 20px;
+    } */
+
+    section.advantage .advantage_block {
+        align-items: flex-start;
+    }
+
+    section.advantage .advantage_block .advantage_descr {
+        width: 301px;
+    }
+
+    section.mobile .mobile_item {
+        width: 295px;
+    }
+
+    .footer_wrapper>div {
+        width: 50%;
+    }
+
+    .footer_wrapper>div:nth-child(1) {
+        width: 25%;
+    }
+
+    .footer_wrapper>div:nth-child(3) {
+        width: 25%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .footer_mobile {
+        display: flex;
+    }
+
+    .footer_mobile a {
+        margin: 0 3px;
+    }
+    
+    .footer_mobile a img{
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width:991px) {
+
+    nav .menu .menu_link {
+        font-size: 10px;
+    }
+    nav .menu .menu_item {
+        padding-right: 9px;
+    }
+
+    .subheader_logo img {
+        width: 100%;
+    }
+
+    header .subheader .subheader_oficial {
+        font-size: 11px;
+    }
+
+    header .subheader .subheader_phone {
+        font-size: 19px;
+    }
+
+    header .subheader .subheader_btn {
+        width: 100%;
+        height: 40px;
+        margin-top: 21px;
+    }
+
+    section.promo .promo_header {
+        font-size: 40px;
+    }
+
+    section.promo .promo_subheader {
+        font-size: 30px;
+    }
+
+    section.advantage .advantage_block {
+        flex-direction: column;
+        align-items: center;
+
+        /* display: flex; */
+        /* justify-content: center; */
+        /* margin-top: 35px; */
+    }
+
+    section .title {
+        font-size: 28px;
+    }
+
+    section.advantage .advantage_block .advantage_round {
+        margin-right: 0;
+    }
+
+    section.advantage .advantage_block .advantage_descr {
+        width: 301px;
+        margin-top: 21px;
+    }
+
+    .choice img {
+        width: 100%;
+    }
+
+    section.world {
+        min-height: 630px;
+    }
+
+    footer .footer_wrapper {
+        flex-wrap: wrap;
+    }
+
+    footer .footer_wrapper>div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    footer .footer_wrapper>div:nth-child(1) {
+        width: 100%;
+        justify-content: center;
+    }
+
+    footer .footer_wrapper>div:nth-child(2) {
+        width: 100%;
+    }
+
+    footer .footer_wrapper>div:nth-child(3) {
+        width: 100%;
+        justify-content: center;
+    }
+
+
+}
+
+
+/* Пробую в медиазапросе установить ориентацию экрана. Сайт https://html5book.ru/css3-mediazaprosy/  */
+
+/* @media screen and (min-width:576px) and (max-width:768px) and (orientation: landscape) { */
+
+/* @media only screen and (min-width:576px) and (max-width:768px) and (orientation: landscape) {
+    section.advantage {
+        background-color: yellow;
+    }
+} */
+
+
+@media (max-width:767px) {
+
+    nav .menu {
+        /* Фиксируем меню на одном месте */
+        position: fixed;
+        flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		top: 0;
+        /* right: 0; */
+        /* Установим позиционирование меню, т.е. сдвинем его влево от границы экрана на 100 %, и его не будет видно. */
+		left: -100%;
+        /* Блок меню будет занимать ширину в 50 % от родителя */
+		width: 50%;
+        /* Высоту ставим на 100 % видимого пространства на устройстве (телефоне) */
+		height: 100vh;
+		padding: 20px 15px;
+		background-color: rgba(0,0,0, .8);
+        /* За 0.6 сек данное меню появляется.  */
+		transition: 0.6s all;
+    }
+
+    /* Напишу класс активности, который будет показывать меню, которое было сдвинуто за левый край экрана на 100 %. */
+    nav .menu_active {
+        left: 0;
+    }
+
+    nav .menu .menu_item {
+        padding-right: 0;
+        border: none;
+		margin: 10px 0;
+    }
+
+    nav .menu .menu_link {
+        font-size: 20px;
+    }
+
+    header .hamburger {
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 26px;
+        height: 12px;
+    }
+
+    header .hamburger span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: #fff;
+        margin-bottom: 2px;
+        transition: 0.7s all;
+    }
+
+    /* При нажатии на Гамбургер появляется класс активности .hamburger_active */
+    header .hamburger_active span {
+        /* Чтобы крестик из 2-х полосок меню был ровный ставим отступ в -2px.  */
+        margin-bottom: -2px;
+    }
+
+    /* При активном классе .hamburger_active поворачиваю полоску меню из span на -45 градусов.  */
+    header .hamburger_active span:nth-child(1) {
+        transform: translateY(3px) rotate(-45deg);
+    }
+
+    header .hamburger_active span:nth-child(2) {
+        display: none;
+    }
+
+    header .hamburger_active span:nth-child(3) {
+        transform: translateY(3px) rotate(45deg);
+    }
+
+    header .subheader .xs-hidden {
+        display: none;
+    }
+
+    header .subheader .xs-vis .xs-visible {
+        display: block;
+    }
+
+    header .subheader .subheader_phone {
+        font-size: 16px;
+        font-weight: normal;
+        text-align: center;
+        text-transform: uppercase;
+        color: #fff;
+    }
+
+    header .subheader .subheader_btn {
+        width: 160px;
+        height: 40px;
+        /* Выровним кнопку по центру */
+        margin: 0 auto;
+        display: block;
+        margin-top: 10px;
+    }
+
+    section.promo .promo_header {
+        /* font-size: 30px; */
+        line-height: 45px;
+    }
+
+    section.promo .promo_subheader {
+        font-size: 20px;
+    }
+
+}
+
+
+@media (max-width:575px) {
+
+    header nav {
+        height: 30px;
+    }
+
+    body header {
+        height: 30px;
+    }
+
+    header .subheader {
+        height: 60px;
+        /* Т.к. в header nav и в body header поставили высоту 30px, то ставим top: 30px;  */
+        top: 30px;
+    }
+
+    header .subheader .subheader_oficial {
+        display: none;
+    }
+
+    header .subheader .subheader_logo {
+        margin-top: 15px;
+    }
+
+    header .subheader .subheader_phone {
+        font-size: 12px;
+        font-weight: normal;
+        text-align: center;
+        text-transform: uppercase;
+        color: #fff;
+        margin-top: 9px;
+    }
+
+    header .subheader .subheader_btn {
+        width: 110px;
+        height: 22px;
+        font-size: 10px;
+        margin-top: 6px;
+    }
+
+    /* Отключаем hover-эффект для кнопок на мобильном устройстве, чтобы при нажатии пальцем кнопка не оставалась тёмной.  */
+    header .subheader .subheader_btn:hover {
+        background-image: linear-gradient(to top, var(--main-color) 0%, #4ce2ff 100%);
+        /* Убираем браузерную обводку у кнопки button после нажатия на неё.  */
+        outline: none !important;
+    }
+
+    section.promo {
+        min-height: 400px;
+        padding: 113px 0 35px 0;
+    }
+
+    .promo .promo_descr {
+        display: none;
+    }
+
+    section.promo .promo_header {
+        font-size: 30px;
+        font-weight: 900;
+        /* text-align: center; */
+        color: #fff;
+        padding: 0 24px;
+        line-height: 35px;
+    }
+
+    section.promo .promo_subheader {
+        font-size: 20px;
+        margin-top: 33px;
+        line-height: 25px;
+        padding: 0 15px;
+    }
+
+    section.promo .promo_btn {
+        width: 210px;
+        height: 50px;
+        font-size: 16px;
+        margin-top: 72px;
+    }
+
+    /* Отключаем hover-эффект для кнопок на мобильном устройстве, чтобы при нажатии пальцем кнопка не оставалась тёмной.  */
+    section.promo .promo_btn:hover {
+        background-image: linear-gradient(to top, var(--main-color) 0%, #4ce2ff 100%);
+        /* Убираем браузерную обводку у кнопки button после нажатия на неё.  */
+        outline: none !important;
+    }
+
+    nav .menu {
+        width: 82%;
+    }
+
+    nav .menu .menu_item {
+        /* Ширина элемента будет 100%, т.е. будет растягиваться под всё меню.  */
+        width: 100%;
+        /* И выровним текст по центру */
+        text-align: center;
+        padding: 5px 0;
+    }
+
+    /* Когда мы нажимаем именно на ссылку - мы куда-то переходим, а она пока по ширине маленькая. Ссылка изначально это строчный элемент, поэтому чтобы мы могли сссылкой манипулировать как блочным элементом нам надо сделать ссылку блочным элементом. И теперь с точки зрения UX (урок 2.19) это более правильная ссылка. */
+    nav .menu .menu_link {
+        display: block;
+    }
+
+
+    section.advantage {
+        padding: 22px 0 36px 0;
+    }
+
+    section.advantage .title {
+        font-size: 16px;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    section.advantage .advantage_block {
+        margin-top: 26px;
+    }
+
+    section.advantage .advantage_block .advantage_round {
+        /* Делаю размер кружка 100x100 px  */
+        width: 100px;
+        height: 100px;
+    }
+
+    section.advantage .advantage_block .advantage_descr {
+        width: 100%;
+        margin-top: 27px;
+    }
+
+
+    section.mobile {
+        padding: 22px 0 43px 0;
+    }
+
+    section.mobile .title {
+        font-size: 16px;
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 0;
+    }
+    
+    section.mobile .subtitle {
+        font-size: 14px;
+        line-height: 21px;
+        margin-top: 11px;
+        text-align: center;
+        padding: 0 27px;
+    }
+
+    section.mobile .row {
+        margin-top: 30px;
+    }
+
+    section.mobile .mobile_item {
+        height: 254px;
+        padding: 81px 40px 0 40px;
+    }
+
+    section.mobile .mobile_item_subtitle {
+        font-size: 18px;
+        line-height: 31px;
+    }
+
+
+    section.choice {
+        padding: 25px 0 33px 0;
+        min-height: 390px;
+        background: #000;
+    }
+
+    section.choice .title , section.choice .subtitle {
+        display: none;
+    }
+    
+    section.choice .choice_img {
+        margin-top: 35px;
+    }
+
+    section.choice .choice_descr {
+        margin-top: 23px;
+        font-size: 17px;
+        font-weight: 300;
+        color: #fff;
+        line-height: 24px;
+    }
+
+    section.choice .black {
+        display: none;
+    }
+
+
+    section.require {
+        padding: 25px;
+    }
+
+    section.require .title {
+        margin-top: 15px;
+        font-size: 16px;
+        line-height: 16px;
+    }
+
+    section.require .require_block {
+        margin: 30px 0 0 0;
+    }
+
+    section.require .require_title , section.require .require_title_red {
+        font-size: 16px;
+    }
+
+    section.require .require_list {
+        padding-left: 30px;
+        margin-top: 5px;
+    }
+
+    section.require .require_list .pos_item , section.require .require_list .pos_item_red {
+        font-size: 14px;
+        margin-bottom: 5px;
+        line-height: 20px;
+    }
+
+    section.require .require_subdescr {
+        font-size: 14px;
+        margin-top: 15px;
+    }
+
+
+    section.world {
+        min-height: 360px;
+        padding: 25px 0 30px 0;
+    }
+
+    section.world .label {
+        width: 76px;
+    }
+
+    section.world .title {
+        font-size: 16px;
+        margin-top: 15px;
+    }
+
+    section.world .subtitle {
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    section.world .world_link {
+        width: 200px;
+        display: block;
+        bottom: 30px;
+    }
+
+
+    footer#footer {
+        padding: 25px 0 20px 0;
+    }
+
+    footer .footer_divider {
+        width: 253px;
+    }
+
+    footer .footer_wrapper {
+        margin-top: 19px;
+    }
+
+    footer .footer_wrapper>div:nth-child(1) {
+        order: 2;
+    }
+    footer .footer_wrapper>div:nth-child(2) {
+        order: 1;
+    }
+    footer .footer_wrapper>div:nth-child(3) {
+        order: 3;
+    }
+    
+    footer .footer_links {
+        width: 290px;
+    }
+
+    footer .footer_links_main {
+        padding: 0;
+        font-size: 14px;
+    }
+
+    footer .footer_links_sub {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    footer .footer_links_sub a {
+        margin: 0 7px;
+    }
+
+    footer .footer_links_lang {
+        margin-top: 7px;
+    }
+
+
+}
+
+
+
