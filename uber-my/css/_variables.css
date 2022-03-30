@@ -1,0 +1,11 @@
+
+
+
+:root {
+    --main-color: #1eacc7;
+
+    /* Использую эту переменную --second-color в основном файле style.css  */
+    --second-color: #ff5656;
+}
+
+
