@@ -130,6 +130,37 @@ $(document).ready(function(){
     })
 
 
+    // Урок 3.17. Модальные окна.
+    $('[data-modal=consultation]').on('click', function() {
+        $('.overlay, #consultation').fadeIn('slow');
+    });
+
+    // В JQuery запись $('[data-modal=consultation]') означает получить элемент по определенному дата-атрибуту [data-modal=consultation] 
+    // Чтобы по простому проверить получили эти элементы или нет можно написать следующее:
+    // $('[data-modal=consultation]').fadeOut();
+    // fadeOut() - команда позволяет анимированно скрыть элемент со страницы. 
+
+
+    $('.modal__close').on('click', function() {
+        $('.overlay, #consultation, #thanks, #order').fadeOut('slow');
+    });
+
+
+    $('.button_mini').each(function(i) {
+        $(this).on('click', function() {
+            $('#order .modal__descr').text($('.catalog-item__subtitle').eq(i).text());
+
+            // Команда показывает модальное окно. 
+            $('.overlay, #order').fadeIn('slow');
+        });
+    });
+
+    // **** РАЗЪЯСНЕНИЕ К СКРИПТУ *****
+    // .each(function(i)) - команда перебирает все кнопки с классом '.button_mini' , т.е. для каждой кнопки будет выполняться какая-то операция. Аргумент (i) отвечает за номер элемента по порядку (т.е. мы перебираем 1-й, 2-й, 5-й элемент и т.д.). 
+    // $(this).on('click', function() - та кнопка на которую нажали (на неё совершен клик).  
+    // $('#order .modal__descr').text($('.catalog-item__subtitle').eq(i).text()); - внутри модального окна #order есть класс .modal__descr Во внутрь класса .modal__descr помещаем текст text (например text('любой текст')). 
+    // Но внутри text() мы напишем text($('.catalog-item__subtitle').eq(i).text()) - т.е. запишем получение текста из элемента с классом .catalog-item__subtitle , т.е. получим текст из любой карточки товара.  .eq(i).text() - получаем текст из определенного элемента по порядку (получаем нужный заголовок с классом .catalog-item__subtitle по его номеру). 
+
 
 
 
