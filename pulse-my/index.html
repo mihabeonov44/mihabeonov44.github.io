@@ -34,7 +34,7 @@
 <body>
 
     <!-- 1-я секция "Подбор пульсометра" -->
-    <section class="promo">
+    <section id="up" class="promo">
         <div class="container">
 
             <!-- Внутри блока "container" будет несколько подблоков.  -->
@@ -75,6 +75,7 @@
                 <div class="promo__icons">
                     <div class="promo__icon">
                         <img src="icons/main_screen/timer_ds.png" alt="timer">
+                        <!-- <img src="timer_ds.png" alt="timer"> -->
                         Время подбора:
                         10 минут
                     </div>
@@ -119,7 +120,7 @@
                     </div>
                 </div>
                 <div class="advantages__item">
-                    <img src="icons/advantages/heart.png" alt="heart" class="advantages__icon">
+                    <img src="icons/advantages/heart.png" alt="heart" class="advantages__icon advantages__icon_animated">
                     <div class="advantages__subtitle">
                         Заботимся о здоровье
                     </div>
@@ -129,7 +130,7 @@
                     </div>
                 </div>
                 <div class="advantages__item">
-                    <img src="icons/advantages/shoe.png" alt="shoe" class="advantages__icon">
+                    <img src="icons/advantages/shoe.png" alt="shoe" class="advantages__icon advantages__icon_shoesanimate">
                     <div class="advantages__subtitle">
                         Учим бегать
                     </div>
@@ -162,7 +163,7 @@
             </div>
 
             <!-- Атрибут action="" - это тот обработчик формы который будет запускаться. Обработчик это чаще всего .php-файл, который будет взаимодействовать с сервером.  -->
-            <form class="feed-form" action="#">
+            <form id="consultation-form" class="feed-form" action="#">
 
                 <!-- Тег input - это поле для ввода. Input служит для того чтобы связать действия пользователя с вашим веб-сайтом. -->
                 <!-- <input type="text"> -->
@@ -185,7 +186,7 @@
 
                 <!-- Все наши 3 инпута сделаем обязательными написав required.  -->
                 <input name="name" required placeholder="Ваше имя" type="text">
-                <input name="phone" required placeholder="Ваш телефон" type="number">
+                <input name="phone" required placeholder="Ваш телефон">
                 <input name="email" required placeholder="Ваш E-mail" type="email">
 
                 <!-- Кнопка для отправки данных формы на сервер (с типом type="submit", которая отправляет всю эту форму из 3-х Инпутов.  -->
@@ -655,9 +656,15 @@
             <div class="modal__subtitle">Просто заполните форму заявки</div>
             <div class="modal__descr">и мы перезвоним вам в течении 10 минут</div>
             <form class="feed-form feed-form_mt25" action="#">
-                <input name="name" required placeholder="Ваше имя" type="text"> 
+
+                <!-- <input name="name" required placeholder="Ваше имя" type="text"> 
                 <input name="phone" required placeholder="Ваш телефон" type="number"> 
-                <input name="email" required placeholder="Ваш E-mail" type="email"> 
+                <input name="email" required placeholder="Ваш E-mail" type="email">  -->
+
+                <!-- В уроке 3.18. уберем из всех инпутов атрибут required  -->
+                <input name="name" placeholder="Ваше имя" type="text"> 
+                <input name="phone" placeholder="Ваш телефон"> 
+                <input name="email" placeholder="Ваш E-mail" type="email"> 
 
                 <button class="button button_submit">заказать консультацию</button>
             </form>
@@ -669,7 +676,7 @@
             <div class="modal__descr">Пульсометр Polar FT1</div>
             <form class="feed-form feed-form_mt25" action="#">
                 <input name="name" required placeholder="Ваше имя" type="text"> 
-                <input name="phone" required placeholder="Ваш телефон" type="number"> 
+                <input name="phone" required placeholder="Ваш телефон"> 
                 <input name="email" required placeholder="Ваш E-mail" type="email"> 
 
                 <button class="button button_submit">купить</button>
@@ -687,6 +694,13 @@
 
 
 
+    <!-- К уроку 3.23. Плавная прокрутка и переход на страницу.  -->
+    <a href="#up" class="pageup">
+        <img src="icons/up.svg" alt="up">
+    </a>
+
+
+
 
 
 
@@ -697,6 +711,12 @@
 
     <!-- Теперь Подключаем сам slick-Слайдер, который основан на библиотеке Jquery -->
     <script src="js/slick.min.js"></script>
+
+    <!-- К уроку 3.18. Подключаю плагин для валидации форм -->
+    <script src="js/jquery.validate.min.js"></script>
+
+    <!-- К уроку 3.19. Подключаю плагин для маски ввода номера телефона на сайте -->
+    <script src="js/jquery.maskedinput.min.js"></script>
 
 
     <!-- Подключаю свой скрипт script.js -->
